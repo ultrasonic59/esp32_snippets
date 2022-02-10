@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;esp-idf-test/main/ssd1306_spi.c&apos;" deleteContents="false" description="Delete resource &apos;esp-idf-test/main/ssd1306_spi.c&apos;" element1="/esp-idf-test/main/ssd1306_spi.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1644437650334"/>
-</session>
