@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "C:/Espressif/frameworks/esp-idf-v4.4/components/bootloader/subproject",
-    "build_dir":          "D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader",
-    "config_file":        "D:/proj/velograph/esp32_proj/esp-idf-test/sdkconfig",
+    "build_dir":          "E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader",
+    "config_file":        "E:/proj/velograph/esp32_snippets/esp_idf_test/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",

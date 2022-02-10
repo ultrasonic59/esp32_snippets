@@ -38,11 +38,7 @@ uint8_t image[8];
 
 void ssd1306_display_image(SSD1306_t * dev, int page, int seg, uint8_t * images, int width)
 {
-	if (dev->_address == SPIAddress) {
-		spi_display_image(dev, page, seg, images, width);
-	} else {
-		i2c_display_image(dev, page, seg, images, width);
-	}
+i2c_display_image(dev, page, seg, images, width);
 }
 
 void ssd1306_clear_screen(SSD1306_t * dev, bool invert)

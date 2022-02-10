@@ -1,13 +1,13 @@
 # Target labels
  bootloader
 # Source files and their labels
-D:/proj/velograph/esp32_proj/esp-idf-test/build/CMakeFiles/bootloader
-D:/proj/velograph/esp32_proj/esp-idf-test/build/CMakeFiles/bootloader.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/CMakeFiles/bootloader-complete.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
-D:/proj/velograph/esp32_proj/esp-idf-test/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/CMakeFiles/bootloader
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/CMakeFiles/bootloader.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/CMakeFiles/bootloader-complete.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+E:/proj/velograph/esp32_snippets/esp_idf_test/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

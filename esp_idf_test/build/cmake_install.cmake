@@ -1,8 +1,8 @@
-# Install script for directory: D:/proj/velograph/esp32_proj/esp-idf-test
+# Install script for directory: E:/proj/velograph/esp32_snippets/esp_idf_test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/esp-idf-test")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/esp_idf_test")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/proj/velograph/esp32_proj/esp-idf-test/build/esp-idf/cmake_install.cmake")
+  include("E:/proj/velograph/esp32_snippets/esp_idf_test/build/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/proj/velograph/esp32_proj/esp-idf-test/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/proj/velograph/esp32_snippets/esp_idf_test/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

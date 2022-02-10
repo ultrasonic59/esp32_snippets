@@ -104,8 +104,10 @@ void i2c_init(SSD1306_t * dev, int width, int height) {
 void i2c_display_image(SSD1306_t * dev, int page, int seg, uint8_t * images, int width) {
 	i2c_cmd_handle_t cmd;
 
-	if (page >= dev->_pages) return;
-	if (seg >= dev->_width) return;
+	if (page >= dev->_pages)
+		return;
+	if (seg >= dev->_width)
+		return;
 
 	int _seg = seg + CONFIG_OFFSETX;
 	uint8_t columLow = _seg & 0x0F;
