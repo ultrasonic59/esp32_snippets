@@ -11,7 +11,7 @@
 #include "st7789.h"
 
 #define TAG "ST7789"
-#define	_DEBUG_ 0
+#define	_DEBUG_ 1
 
 #ifdef CONFIG_IDF_TARGET_ESP32
 #define LCD_HOST    HSPI_HOST
@@ -23,9 +23,9 @@
 
 static const int SPI_Command_Mode = 0;
 static const int SPI_Data_Mode = 1;
-static const int SPI_Frequency = SPI_MASTER_FREQ_20M;
+////static const int SPI_Frequency = SPI_MASTER_FREQ_20M;
 //static const int SPI_Frequency = SPI_MASTER_FREQ_26M;
-//static const int SPI_Frequency = SPI_MASTER_FREQ_40M;
+static const int SPI_Frequency = SPI_MASTER_FREQ_40M;
 //static const int SPI_Frequency = SPI_MASTER_FREQ_80M;
 
 
@@ -670,9 +670,11 @@ int lcdDrawChar(TFT_t * dev, FontxFile *fxs, uint16_t x, uint16_t y, uint8_t asc
 	uint16_t mask;
 	bool rc;
 
-	if(_DEBUG_)printf("_font_direction=%d\n",dev->_font_direction);
+	if(_DEBUG_)
+		printf("_font_direction=%d\n",dev->_font_direction);
 	rc = GetFontx(fxs, ascii, fonts, &pw, &ph);
-	if(_DEBUG_)printf("GetFontx rc=%d pw=%d ph=%d\n",rc,pw,ph);
+	if(_DEBUG_)
+		printf("GetFontx rc=%d pw=%d ph=%d\n",rc,pw,ph);
 	if (!rc) return 0;
 
 	int16_t xd1 = 0;
@@ -750,10 +752,12 @@ int lcdDrawChar(TFT_t * dev, FontxFile *fxs, uint16_t x, uint16_t y, uint8_t asc
 		y1	= y;
 	}
 
-	if (dev->_font_fill) lcdDrawFillRect(dev, x0, y0, x1, y1, dev->_font_fill_color);
+	if (dev->_font_fill)
+		lcdDrawFillRect(dev, x0, y0, x1, y1, dev->_font_fill_color);
 
 	int bits;
-	if(_DEBUG_)printf("xss=%d yss=%d\n",xss,yss);
+	if(_DEBUG_)
+		printf("xss=%d yss=%d\n",xss,yss);
 	ofs = 0;
 	yy = yss;
 	xx = xss;
@@ -793,9 +797,11 @@ int lcdDrawChar(TFT_t * dev, FontxFile *fxs, uint16_t x, uint16_t y, uint8_t asc
 
 int lcdDrawString(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, uint8_t * ascii, uint16_t color) {
 	int length = strlen((char *)ascii);
-	if(_DEBUG_)printf("lcdDrawString length=%d\n",length);
+	if(_DEBUG_)
+		printf("lcdDrawString length=%d\n",length);
 	for(int i=0;i<length;i++) {
-		if(_DEBUG_)printf("ascii[%d]=%x x=%d y=%d\n",i,ascii[i],x,y);
+		if(_DEBUG_)
+			printf("ascii[%d]=%x x=%d y=%d\n",i,ascii[i],x,y);
 		if (dev->_font_direction == 0)
 			x = lcdDrawChar(dev, fx, x, y, ascii[i], color);
 		if (dev->_font_direction == 1)
@@ -805,10 +811,14 @@ int lcdDrawString(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, uint8_t * 
 		if (dev->_font_direction == 3)
 			y = lcdDrawChar(dev, fx, x, y, ascii[i], color);
 	}
-	if (dev->_font_direction == 0) return x;
-	if (dev->_font_direction == 2) return x;
-	if (dev->_font_direction == 1) return y;
-	if (dev->_font_direction == 3) return y;
+	if (dev->_font_direction == 0)
+		return x;
+	if (dev->_font_direction == 2)
+		return x;
+	if (dev->_font_direction == 1)
+		return y;
+	if (dev->_font_direction == 3)
+		return y;
 	return 0;
 }
 
@@ -819,7 +829,8 @@ int lcdDrawString(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, uint8_t * 
 // code: charcter code
 // color:color
 int lcdDrawCode(TFT_t * dev, FontxFile *fx, uint16_t x,uint16_t y,uint8_t code,uint16_t color) {
-	if(_DEBUG_)printf("code=%x x=%d y=%d\n",code,x,y);
+	if(_DEBUG_)
+		printf("code=%x x=%d y=%d\n",code,x,y);
 	if (dev->_font_direction == 0)
 		x = lcdDrawChar(dev, fx, x, y, code, color);
 	if (dev->_font_direction == 1)
@@ -828,10 +839,14 @@ int lcdDrawCode(TFT_t * dev, FontxFile *fx, uint16_t x,uint16_t y,uint8_t code,u
 		x = lcdDrawChar(dev, fx, x, y, code, color);
 	if (dev->_font_direction == 3)
 		y = lcdDrawChar(dev, fx, x, y, code, color);
-	if (dev->_font_direction == 0) return x;
-	if (dev->_font_direction == 2) return x;
-	if (dev->_font_direction == 1) return y;
-	if (dev->_font_direction == 3) return y;
+	if (dev->_font_direction == 0)
+		return x;
+	if (dev->_font_direction == 2)
+		return x;
+	if (dev->_font_direction == 1)
+		return y;
+	if (dev->_font_direction == 3)
+		return y;
 	return 0;
 }
 

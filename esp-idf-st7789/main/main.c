@@ -45,7 +45,7 @@ static void SPIFFS_Directory(char * path) {
 #define CONFIG_BL_GPIO -1
 #endif
 
-TickType_t FillTest(TFT_t * dev, int width, int height) {
+TickType_t FillTest(TFT_t *dev, int width, int height) {
 	TickType_t startTick, endTick, diffTick;
 	startTick = xTaskGetTickCount();
 
@@ -875,15 +875,9 @@ void ST7789(void *pvParameters)
 	}
 #endif
 
-#if 0
-	//for TEST
-	lcdDrawFillRect(&dev, 0, 0, 10, 10, RED);
-	lcdDrawFillRect(&dev, 10, 10, 20, 20, GREEN);
-	lcdDrawFillRect(&dev, 20, 20, 30, 30, BLUE);
-#endif
 
 	while(1) {
-
+#if 0
 		FillTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT);
 		WAIT;
 
@@ -956,6 +950,8 @@ void ST7789(void *pvParameters)
 		PNGTest(&dev, file, CONFIG_WIDTH, CONFIG_HEIGHT);
 		WAIT;
 
+#endif
+
 		// Multi Font Test
 		uint16_t color;
 		uint8_t ascii[40];
@@ -974,13 +970,17 @@ void ST7789(void *pvParameters)
 			xd = 1;
 			yd = 0;
 		}
+
+
 		strcpy((char *)ascii, "16Dot Gothic Font");
 		lcdDrawString(&dev, fx16G, xpos, ypos, ascii, color);
+		WAIT;
 
 		xpos = xpos - (24 * xd) - (margin * xd);
 		ypos = ypos + (16 * yd) + (margin * yd);
 		strcpy((char *)ascii, "24Dot Gothic Font");
 		lcdDrawString(&dev, fx24G, xpos, ypos, ascii, color);
+		WAIT;
 
 		xpos = xpos - (32 * xd) - (margin * xd);
 		ypos = ypos + (24 * yd) + (margin * yd);
@@ -995,11 +995,13 @@ void ST7789(void *pvParameters)
 		ypos = ypos + (10 * yd) + (margin * yd);
 		strcpy((char *)ascii, "16Dot Mincyo Font");
 		lcdDrawString(&dev, fx16M, xpos, ypos, ascii, color);
+		WAIT;
 
 		xpos = xpos - (24 * xd) - (margin * xd);;
 		ypos = ypos + (16 * yd) + (margin * yd);
 		strcpy((char *)ascii, "24Dot Mincyo Font");
 		lcdDrawString(&dev, fx24M, xpos, ypos, ascii, color);
+		WAIT;
 
 		if (CONFIG_WIDTH >= 240) {
 			xpos = xpos - (32 * xd) - (margin * xd);;
