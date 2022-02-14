@@ -17,6 +17,10 @@
 #include "decode_png.h"
 #include "pngle.h"
 
+#include "dprint.h"
+ ///extern int _dprint(const char *format, ...);
+extern void _dput(char ch);
+
 #define	INTERVAL		400
 #define WAIT	vTaskDelay(INTERVAL)
 
@@ -845,7 +849,10 @@ void ST7789(void *pvParameters)
 	spi_master_init(&dev, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
 	lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
 
-#if CONFIG_INVERSION
+	_dprint("test");
+	_dput(0x33);
+
+	#if CONFIG_INVERSION
 	ESP_LOGI(TAG, "Enable Display Inversion");
 	lcdInversionOn(&dev);
 #endif
@@ -1058,3 +1065,9 @@ void app_main(void)
 	SPIFFS_Directory("/spiffs/");
 	xTaskCreate(ST7789, "ST7789", 1024*6, NULL, 2, NULL);
 }
+
+void __dput(char ch)
+{
+
+}
+///=============================================

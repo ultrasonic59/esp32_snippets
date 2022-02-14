@@ -1909,6 +1909,16 @@
 			<location>C:/Espressif/frameworks/esp-idf-v4.4/components/nvs_flash/src/nvs_types.cpp</location>
 		</link>
 		<link>
+			<name>esp_idf_components/on/dbg/dprint.c</name>
+			<type>1</type>
+			<location>D:/proj/velograph/esp32_snippets/common/dbg/dprint.c</location>
+		</link>
+		<link>
+			<name>esp_idf_components/on/display/displ.c</name>
+			<type>1</type>
+			<location>D:/proj/velograph/esp32_snippets/common/display/displ.c</location>
+		</link>
+		<link>
 			<name>esp_idf_components/openssl/library/ssl_bio.c</name>
 			<type>1</type>
 			<location>C:/Espressif/frameworks/esp-idf-v4.4/components/openssl/library/ssl_bio.c</location>

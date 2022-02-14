@@ -33,3 +33,5 @@ TDO	GPIO15
 TDI	GPIO12
 TCK	GPIO13
 TMS	GPIO14
+
+https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html#component-directories
