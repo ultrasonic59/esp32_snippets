@@ -15,6 +15,7 @@
 
 extern void test1(void);
 /// void init_epapir(void);
+extern void init_my_spi(void);
 
 void app_main(void)
 {
@@ -33,7 +34,12 @@ void app_main(void)
     printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
             (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
     ///======================================       
-    init_epapir();
+ ////   init_epapir();
+    init_my_spi();
+    if (epd_init(lut_full_update) != 0) {
+       printf("e-Paper init failed\n");
+////       return -1;
+     }
     ///=======================================
     for (int i = 10; i >= 0; i--) {
         printf("Restarting in %d seconds...\n", i);

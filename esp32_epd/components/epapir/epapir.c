@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "epapir.h"
 
+epd_t epd;
+
+#if 0
 bool _power_is_on = false;
 void init_epapir(void)
 {
@@ -76,3 +79,58 @@ void _InitDisplay()
   _writeData(0x08);    // 2us per line
   _setPartialRamArea(0, 0, WIDTH, HEIGHT);
 }
+#endif
+
+int epd_init(const unsigned char* lut) {
+  #if 0
+  epd->reset_pin = RST_PIN;
+  epd->dc_pin = DC_PIN;
+  epd->cs_pin = CS_PIN;
+  epd->busy_pin = BUSY_PIN;
+  epd->width = EPD_WIDTH;
+  epd->height = EPD_HEIGHT;
+  /* this calls the peripheral hardware interface, see epdif */
+  if (EpdInitCallback() != 0) {
+    return -1;
+  }
+  epd->lut = lut;
+  /* EPD hardware init start */
+  EPD_Reset(epd);
+  EPD_SendCommand(epd, DRIVER_OUTPUT_CONTROL);
+  EPD_SendData(epd, (EPD_HEIGHT - 1) & 0xFF);
+  EPD_SendData(epd, ((EPD_HEIGHT - 1) >> 8) & 0xFF);
+  EPD_SendData(epd, 0x00);                     // GD = 0; SM = 0; TB = 0;
+  EPD_SendCommand(epd, BOOSTER_SOFT_START_CONTROL);
+  EPD_SendData(epd, 0xD7);
+  EPD_SendData(epd, 0xD6);
+  EPD_SendData(epd, 0x9D);
+  EPD_SendCommand(epd, WRITE_VCOM_REGISTER);
+  EPD_SendData(epd, 0xA8);                     // VCOM 7C
+  EPD_SendCommand(epd, SET_DUMMY_LINE_PERIOD);
+  EPD_SendData(epd, 0x1A);                     // 4 dummy lines per gate
+  EPD_SendCommand(epd, SET_GATE_TIME);
+  EPD_SendData(epd, 0x08);                     // 2us per line
+  EPD_SendCommand(epd, DATA_ENTRY_MODE_SETTING);
+  EPD_SendData(epd, 0x03);                     // X increment; Y increment
+  EPD_SetLut(epd, epd->lut);
+  /* EPD hardware init end */
+  #endif
+  return 0;
+}
+
+const unsigned char lut_full_update[] =
+{
+    0x22, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x11,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E,
+    0x01, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+const unsigned char lut_partial_update[] =
+{
+    0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x0F, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
