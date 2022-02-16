@@ -21,6 +21,7 @@ typedef struct tft7789_s_{
 typedef struct displ7789_s_{
 	uint16_t cur_x;
 	uint16_t cur_y;
+	uint16_t cur_color;
 	TFT7789_t tft;
 	FontxFile cur_font;
 } displ7789_t;

@@ -1911,12 +1911,12 @@
 		<link>
 			<name>esp_idf_components/on/dbg/dprint.c</name>
 			<type>1</type>
-			<location>D:/proj/velograph/esp32_snippets/common/dbg/dprint.c</location>
+			<location>E:/proj/velograph/esp32_snippets/common/dbg/dprint.c</location>
 		</link>
 		<link>
 			<name>esp_idf_components/on/display/displ.c</name>
 			<type>1</type>
-			<location>D:/proj/velograph/esp32_snippets/common/display/displ.c</location>
+			<location>E:/proj/velograph/esp32_snippets/common/display/displ.c</location>
 		</link>
 		<link>
 			<name>esp_idf_components/openssl/library/ssl_bio.c</name>
