@@ -6,6 +6,8 @@
 #include <sys/unistd.h>
 
 #include "displ.h"
+TFT7789_t dev;
+
 displ7789_t cur_displ;
 ////			x = lcdDrawChar(dev, fx, x, y, ascii[i], color);
 extern int lcdDrawChar(TFT7789_t* dev, FontxFile *fxs

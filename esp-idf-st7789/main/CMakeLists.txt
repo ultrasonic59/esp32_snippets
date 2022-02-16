@@ -1,5 +1,6 @@
 set(srcs "main.c"
     "st7789.c"
+    "st7789task.c"
     "fontx.c"
     "decode_png.c"
     "pngle.c"

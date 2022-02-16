@@ -2,7 +2,8 @@
 #define MAIN_ST7789_H_
 
 #include "driver/spi_master.h"
-#include "fontx.h"
+//// #include "fontx.h"
+#include "displ.h"
 
 #define RED				0xf800
 #define GREEN			0x07e0
@@ -20,7 +21,7 @@
 #define DIRECTION180		2
 #define DIRECTION270		3
 
-
+#if 0
 typedef struct {
 	uint16_t _width;
 	uint16_t _height;
@@ -35,7 +36,9 @@ typedef struct {
 	int16_t _bl;
 	spi_device_handle_t _SPIHandle;
 } TFT_t;
+#endif
 
+#if 1
 void spi_master_init(TFT_t * dev, int16_t GPIO_MOSI, int16_t GPIO_SCLK, int16_t GPIO_CS, int16_t GPIO_DC, int16_t GPIO_RESET, int16_t GPIO_BL);
 bool spi_master_write_byte(spi_device_handle_t SPIHandle, const uint8_t* Data, size_t DataLength);
 bool spi_master_write_command(TFT_t * dev, uint8_t cmd);
@@ -77,5 +80,7 @@ void lcdBacklightOff(TFT_t * dev);
 void lcdBacklightOn(TFT_t * dev);
 void lcdInversionOff(TFT_t * dev);
 void lcdInversionOn(TFT_t * dev);
+#endif
+
 #endif /* MAIN_ST7789_H_ */
 
