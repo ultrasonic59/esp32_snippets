@@ -22,12 +22,17 @@ typedef struct displ7789_s_{
 	uint16_t cur_x;
 	uint16_t cur_y;
 	uint16_t cur_color;
-	TFT7789_t tft;
-	FontxFile cur_font;
+	TFT7789_t *tft;
+	FontxFile *cur_font;
 } displ7789_t;
 
 #define  TFT_t TFT7789_t
 ////extern TFT7789_t dev;
 extern TFT7789_t dev;
+extern void printd(char * format, ...);
+extern void init_displ(FontxFile *font,TFT7789_t *tft
+					,uint16_t color);
+extern void set_color(uint16_t color);
 
+///===============================================
 #endif

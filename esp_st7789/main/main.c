@@ -18,6 +18,7 @@
 #include "pngle.h"
 
 #include "dprint.h"
+
 extern void st7789task(void *pvParameters);
 
 static const char *TAG = "ST7789";

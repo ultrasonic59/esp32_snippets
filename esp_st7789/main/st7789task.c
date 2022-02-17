@@ -20,9 +20,10 @@
 #include "fonts.h"
 #include "displ.h"
 
-#include "dprint.h"
+///#include "dprint.h"
+
 ///================================================
-#define	INTERVAL		100	///400
+#define	INTERVAL		50 ///100	///400
 #define WAIT	vTaskDelay(INTERVAL)
 ///================================================
 uint16_t tbl_col[]={
@@ -38,6 +39,7 @@ uint16_t tbl_col[]={
 void st7789task(void *pvParameters)
 {
 	uint8_t ptr_col=0;
+	uint8_t b_tst=0;
 	// set font file
 	FontxFile fx16G[2];
 	FontxFile fx24G[2];
@@ -56,13 +58,27 @@ void st7789task(void *pvParameters)
 	InitFontx(fx24M,"/spiffs/ILMH24XB.FNT",""); // 12x24Dot Mincyo
 	InitFontx(fx32M,"/spiffs/ILMH32XB.FNT",""); // 16x32Dot Mincyo
 #endif
+
+	uint16_t color = GREEN;
+
 ////	TFT_t dev;
 	spi_master_init(&dev, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
 	lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
 
 ///	_dprint("test");
 ////	_dput(0x33);
+	init_displ(fx16G,&dev,WHITE);
+	lcdFillScreen(&dev, BLACK);
+	lcdSetFontDirection(&dev, 3);
 
+for(;;)
+{
+printd("\n test[%x]", b_tst);
+b_tst++;
+WAIT;
+lcdFillScreen(&dev, BLACK);
+
+}
 
 while(1) {
 		// Multi Font Test
