@@ -1,4 +1,4 @@
-# Install script for directory: D:/proj/velograph/esp32_snippets/esp_idf_test/main
+# Install script for directory: E:/proj/velograph/esp32_snippets/esp_idf_test/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
