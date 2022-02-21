@@ -36,7 +36,108 @@ uint16_t tbl_col[]={
 		CYAN,
 		PURPLE
 };
+
+TickType_t LineTest(TFT_t * dev, int width, int height,uint16_t color) {
+	TickType_t startTick, endTick, diffTick;
+	startTick = xTaskGetTickCount();
+
+////	uint16_t color;
+	//lcdFillScreen(dev, WHITE);
+	lcdFillScreen(dev, BLACK);
+////	color=RED;
+	for(int ypos=0;ypos<height;ypos=ypos+20) {
+		lcdDrawLine(dev, 0, ypos, width, ypos, color);
+	}
+
+	for(int xpos=0;xpos<width;xpos=xpos+20) {
+		lcdDrawLine(dev, xpos, 0, xpos, height, color);
+	}
+
+	endTick = xTaskGetTickCount();
+	diffTick = endTick - startTick;
+	ESP_LOGI(__FUNCTION__, "elapsed time[ms]:%d",diffTick*portTICK_RATE_MS);
+	return diffTick;
+}
+TickType_t TriangleTest(TFT_t * dev, int width, int height,uint16_t color) {
+	TickType_t startTick, endTick, diffTick;
+	startTick = xTaskGetTickCount();
+
+////	uint16_t color;
+	//lcdFillScreen(dev, WHITE);
+////	lcdFillScreen(dev, BLACK);
+////	color = CYAN;
+	uint16_t xpos = width/2;
+	uint16_t ypos = height/2;
+
+	uint16_t w = width * 0.6;
+	uint16_t h = w * 1.0;
+	int angle;
+
+	for(angle=0;angle<=(360*3);angle=angle+30) {
+		lcdDrawTriangle(dev, xpos, ypos, w, h, angle, color);
+////		usleep(10000);
+////		lcdDrawTriangle(dev, xpos, ypos, w, h, angle, BLACK);
+	}
+
+	for(angle=0;angle<=360;angle=angle+30) {
+		lcdDrawTriangle(dev, xpos, ypos, w, h, angle, color);
+	}
+
+	endTick = xTaskGetTickCount();
+	diffTick = endTick - startTick;
+////	ESP_LOGI(__FUNCTION__, "elapsed time[ms]:%d",diffTick*portTICK_RATE_MS);
+	return diffTick;
+}
+
+TickType_t CircleTest(TFT_t * dev, int width, int height,uint16_t color) {
+////TickType_t startTick;
+////TickType_t endTick;
+////TickType_t diffTick;
+////	startTick = xTaskGetTickCount();
+
+////	uint16_t color;
+	//lcdFillScreen(dev, WHITE);
+////	lcdFillScreen(dev, BLACK);
+////	color = CYAN;
+	uint16_t xpos = width/2;
+	uint16_t ypos = height/2;
+	for(int i=5;i<height;i=i+5) {
+		lcdDrawCircle(dev, xpos, ypos, i, color);
+	}
+
+////	endTick = xTaskGetTickCount();
+////	diffTick = endTick - startTick;
+////	ESP_LOGI(__FUNCTION__, "elapsed time[ms]:%d",diffTick*portTICK_RATE_MS);
+////	return diffTick;
+	return 0;
+}
+
+
+
 void st7789task(void *pvParameters)
+{
+uint8_t ptr_col=0;
+uint8_t b_tst=0;
+uint16_t color = GREEN;
+
+////	TFT_t dev;
+spi_master_init(&dev, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
+lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
+
+for(;;)
+{
+	color=tbl_col[ptr_col&0x7];
+	LineTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT,color);
+	ptr_col++;
+	WAIT;
+	color=tbl_col[ptr_col&0x7];
+///	CircleTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT,color);
+	TriangleTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT,color);
+	ptr_col++;
+	WAIT;
+}
+}
+void _st7789task(void *pvParameters)
 {
 	uint8_t ptr_col=0;
 	uint8_t b_tst=0;
