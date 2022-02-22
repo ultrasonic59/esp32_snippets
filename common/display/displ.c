@@ -8,11 +8,11 @@
 #include <stdarg.h>
 
 #include "displ.h"
-TFT7789_t dev;
+extern TFT7789_t dev;
 
 displ7789_t cur_displ;
 
-extern int lcdDrawString(TFT_t * dev, FontxFile *fx
+extern int lcdDrawString( FontxFile *fx
 	, uint16_t x, uint16_t y, uint8_t * ascii, uint16_t color);
 
 #if 0
@@ -59,7 +59,7 @@ va_list args;
 va_start (args, format);
 vsnprintf ((char*)buffer, 255, format, args);
 ///======================================
-lcdDrawString(cur_displ.tft, cur_displ.cur_font
+lcdDrawString( cur_displ.cur_font
 			,cur_displ.cur_x, cur_displ.cur_y
 			,buffer, cur_displ.cur_color);
 cur_displ.cur_y++;

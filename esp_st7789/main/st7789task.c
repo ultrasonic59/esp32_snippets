@@ -37,20 +37,20 @@ uint16_t tbl_col[]={
 		PURPLE
 };
 
-TickType_t LineTest(TFT_t * dev, int width, int height,uint16_t color) {
+TickType_t LineTest( int width, int height,uint16_t color) {
 	TickType_t startTick, endTick, diffTick;
 	startTick = xTaskGetTickCount();
 
 ////	uint16_t color;
 	//lcdFillScreen(dev, WHITE);
-	lcdFillScreen(dev, BLACK);
+	lcdFillScreen( BLACK);
 ////	color=RED;
 	for(int ypos=0;ypos<height;ypos=ypos+20) {
-		lcdDrawLine(dev, 0, ypos, width, ypos, color);
+		lcdDrawLine( 0, ypos, width, ypos, color);
 	}
 
 	for(int xpos=0;xpos<width;xpos=xpos+20) {
-		lcdDrawLine(dev, xpos, 0, xpos, height, color);
+		lcdDrawLine( xpos, 0, xpos, height, color);
 	}
 
 	endTick = xTaskGetTickCount();
@@ -58,7 +58,7 @@ TickType_t LineTest(TFT_t * dev, int width, int height,uint16_t color) {
 	ESP_LOGI(__FUNCTION__, "elapsed time[ms]:%d",diffTick*portTICK_RATE_MS);
 	return diffTick;
 }
-TickType_t TriangleTest(TFT_t * dev, int width, int height,uint16_t color) {
+TickType_t TriangleTest( int width, int height,uint16_t color) {
 	TickType_t startTick, endTick, diffTick;
 	startTick = xTaskGetTickCount();
 
@@ -74,13 +74,13 @@ TickType_t TriangleTest(TFT_t * dev, int width, int height,uint16_t color) {
 	int angle;
 
 	for(angle=0;angle<=(360*3);angle=angle+30) {
-		lcdDrawTriangle(dev, xpos, ypos, w, h, angle, color);
+		lcdDrawTriangle( xpos, ypos, w, h, angle, color);
 ////		usleep(10000);
 ////		lcdDrawTriangle(dev, xpos, ypos, w, h, angle, BLACK);
 	}
 
 	for(angle=0;angle<=360;angle=angle+30) {
-		lcdDrawTriangle(dev, xpos, ypos, w, h, angle, color);
+		lcdDrawTriangle( xpos, ypos, w, h, angle, color);
 	}
 
 	endTick = xTaskGetTickCount();
@@ -89,7 +89,7 @@ TickType_t TriangleTest(TFT_t * dev, int width, int height,uint16_t color) {
 	return diffTick;
 }
 
-TickType_t CircleTest(TFT_t * dev, int width, int height,uint16_t color) {
+TickType_t CircleTest(int width, int height,uint16_t color) {
 ////TickType_t startTick;
 ////TickType_t endTick;
 ////TickType_t diffTick;
@@ -102,7 +102,7 @@ TickType_t CircleTest(TFT_t * dev, int width, int height,uint16_t color) {
 	uint16_t xpos = width/2;
 	uint16_t ypos = height/2;
 	for(int i=5;i<height;i=i+5) {
-		lcdDrawCircle(dev, xpos, ypos, i, color);
+		lcdDrawCircle( xpos, ypos, i, color);
 	}
 
 ////	endTick = xTaskGetTickCount();
@@ -111,8 +111,10 @@ TickType_t CircleTest(TFT_t * dev, int width, int height,uint16_t color) {
 ////	return diffTick;
 	return 0;
 }
+///======================================================
+extern void Display_Grid(uint16_t color);
 
-
+///======================================================
 
 void st7789task(void *pvParameters)
 {
@@ -121,19 +123,22 @@ uint8_t b_tst=0;
 uint16_t color = GREEN;
 
 ////	TFT_t dev;
-spi_master_init(&dev, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
-lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
+spi_master_init(CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
+lcdInit( CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
+lcdFillScreen( BLACK);
 
 for(;;)
 {
 	color=tbl_col[ptr_col&0x7];
-	LineTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT,color);
+	Display_Grid(color);
+
+////	LineTest( CONFIG_WIDTH, CONFIG_HEIGHT,color);
 	ptr_col++;
 	WAIT;
 	color=tbl_col[ptr_col&0x7];
 ///	CircleTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT,color);
-	TriangleTest(&dev, CONFIG_WIDTH, CONFIG_HEIGHT,color);
-	ptr_col++;
+////	TriangleTest( CONFIG_WIDTH, CONFIG_HEIGHT,color);
+////	ptr_col++;
 	WAIT;
 }
 }
@@ -163,21 +168,21 @@ void _st7789task(void *pvParameters)
 	uint16_t color = GREEN;
 
 ////	TFT_t dev;
-	spi_master_init(&dev, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
-	lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
+	spi_master_init(CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
+	lcdInit( CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
 
 ///	_dprint("test");
 ////	_dput(0x33);
 	init_displ(fx16G,&dev,WHITE);
-	lcdFillScreen(&dev, BLACK);
-	lcdSetFontDirection(&dev, 3);
+	lcdFillScreen( BLACK);
+	lcdSetFontDirection( 3);
 
 for(;;)
 {
 printd("\n test[%x]", b_tst);
 b_tst++;
 WAIT;
-lcdFillScreen(&dev, BLACK);
+lcdFillScreen( BLACK);
 
 }
 
@@ -186,9 +191,9 @@ while(1) {
 		uint16_t color;
 		uint8_t ascii[40];
 		uint16_t margin = 10;
-		lcdFillScreen(&dev, BLACK);
+		lcdFillScreen( BLACK);
 		color = GREEN;///YELLOW;///WHITE;
-		lcdSetFontDirection(&dev, 0);
+		lcdSetFontDirection( 0);
 		uint16_t xpos = 0;
 		uint16_t ypos = 15;
 		int xd = 0;
@@ -204,20 +209,20 @@ while(1) {
 #endif
 		color=tbl_col[ptr_col&0x7];
 		strcpy((char *)ascii, "Hello Irina");
-		lcdDrawString(&dev, fx16G, xpos, ypos, ascii, color);
+		lcdDrawString( fx16G, xpos, ypos, ascii, color);
 ////		WAIT;
 
 		xpos = xpos - (24 * xd) - (margin * xd);
 		ypos = ypos + (16 * yd) + (margin * yd);
 		strcpy((char *)ascii, "Hi Irina");
-		lcdDrawString(&dev, fx24G, xpos, ypos, ascii, color);
+		lcdDrawString( fx24G, xpos, ypos, ascii, color);
 		WAIT;
 
 		xpos = xpos - (32 * xd) - (margin * xd);
 		ypos = ypos + (24 * yd) + (margin * yd);
 		if (CONFIG_WIDTH >= 240) {
 			strcpy((char *)ascii, "32Dot Gothic Font");
-			lcdDrawString(&dev, fx32G, xpos, ypos, ascii, color);
+			lcdDrawString( fx32G, xpos, ypos, ascii, color);
 			xpos = xpos - (32 * xd) - (margin * xd);;
 			ypos = ypos + (32 * yd) + (margin * yd);
 		}
@@ -242,7 +247,7 @@ while(1) {
 			lcdDrawString(&dev, fx32M, xpos, ypos, ascii, color);
 		}
 #endif
-		lcdSetFontDirection(&dev, 0);
+		lcdSetFontDirection( 0);
 ////		WAIT;
 
 	} // end while

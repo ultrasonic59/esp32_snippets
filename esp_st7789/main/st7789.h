@@ -39,47 +39,47 @@ typedef struct {
 #endif
 
 #if 1
-void spi_master_init(TFT_t * dev, int16_t GPIO_MOSI, int16_t GPIO_SCLK, int16_t GPIO_CS, int16_t GPIO_DC, int16_t GPIO_RESET, int16_t GPIO_BL);
+void spi_master_init(int16_t GPIO_MOSI, int16_t GPIO_SCLK, int16_t GPIO_CS, int16_t GPIO_DC, int16_t GPIO_RESET, int16_t GPIO_BL);
 bool spi_master_write_byte(spi_device_handle_t SPIHandle, const uint8_t* Data, size_t DataLength);
-bool spi_master_write_command(TFT_t * dev, uint8_t cmd);
-bool spi_master_write_data_byte(TFT_t * dev, uint8_t data);
-bool spi_master_write_data_word(TFT_t * dev, uint16_t data);
-bool spi_master_write_addr(TFT_t * dev, uint16_t addr1, uint16_t addr2);
-bool spi_master_write_color(TFT_t * dev, uint16_t color, uint16_t size);
-bool spi_master_write_colors(TFT_t * dev, uint16_t * colors, uint16_t size);
+bool spi_master_write_command( uint8_t cmd);
+bool spi_master_write_data_byte( uint8_t data);
+bool spi_master_write_data_word( uint16_t data);
+bool spi_master_write_addr( uint16_t addr1, uint16_t addr2);
+bool spi_master_write_color( uint16_t color, uint16_t size);
+bool spi_master_write_colors( uint16_t * colors, uint16_t size);
 
 void delayMS(int ms);
-void lcdInit(TFT_t * dev, int width, int height, int offsetx, int offsety);
-void lcdDrawPixel(TFT_t * dev, uint16_t x, uint16_t y, uint16_t color);
-void lcdDrawMultiPixels(TFT_t * dev, uint16_t x, uint16_t y, uint16_t size, uint16_t * colors);
-void lcdDrawFillRect(TFT_t * dev, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
-void lcdDisplayOff(TFT_t * dev);
-void lcdDisplayOn(TFT_t * dev);
-void lcdFillScreen(TFT_t * dev, uint16_t color);
-void lcdDrawLine(TFT_t * dev, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
-void lcdDrawRect(TFT_t * dev, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
-void lcdDrawRectAngle(TFT_t * dev, uint16_t xc, uint16_t yc, uint16_t w, uint16_t h, uint16_t angle, uint16_t color);
-void lcdDrawTriangle(TFT_t * dev, uint16_t xc, uint16_t yc, uint16_t w, uint16_t h, uint16_t angle, uint16_t color);
-void lcdDrawCircle(TFT_t * dev, uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
-void lcdDrawFillCircle(TFT_t * dev, uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
-void lcdDrawRoundRect(TFT_t * dev, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t r, uint16_t color);
-void lcdDrawArrow(TFT_t * dev, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t w, uint16_t color);
-void lcdDrawFillArrow(TFT_t * dev, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t w, uint16_t color);
+void lcdInit( int width, int height, int offsetx, int offsety);
+void lcdDrawPixel(uint16_t x, uint16_t y, uint16_t color);
+void lcdDrawMultiPixels( uint16_t x, uint16_t y, uint16_t size, uint16_t * colors);
+void lcdDrawFillRect( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
+void lcdDisplayOff(void);
+void lcdDisplayOn(void);
+void lcdFillScreen( uint16_t color);
+void lcdDrawLine( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
+void lcdDrawRect( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
+void lcdDrawRectAngle( uint16_t xc, uint16_t yc, uint16_t w, uint16_t h, uint16_t angle, uint16_t color);
+void lcdDrawTriangle( uint16_t xc, uint16_t yc, uint16_t w, uint16_t h, uint16_t angle, uint16_t color);
+void lcdDrawCircle( uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+void lcdDrawFillCircle( uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+void lcdDrawRoundRect( uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t r, uint16_t color);
+void lcdDrawArrow( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t w, uint16_t color);
+void lcdDrawFillArrow( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t w, uint16_t color);
 uint16_t rgb565_conv(uint16_t r, uint16_t g, uint16_t b);
-int lcdDrawChar(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, uint8_t ascii, uint16_t color);
-int lcdDrawString(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, uint8_t * ascii, uint16_t color);
-int lcdDrawCode(TFT_t * dev, FontxFile *fx, uint16_t x,uint16_t y,uint8_t code,uint16_t color);
-//int lcdDrawUTF8Char(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, uint8_t *utf8, uint16_t color);
-//int lcdDrawUTF8String(TFT_t * dev, FontxFile *fx, uint16_t x, uint16_t y, unsigned char *utfs, uint16_t color);
-void lcdSetFontDirection(TFT_t * dev, uint16_t);
-void lcdSetFontFill(TFT_t * dev, uint16_t color);
-void lcdUnsetFontFill(TFT_t * dev);
-void lcdSetFontUnderLine(TFT_t * dev, uint16_t color);
-void lcdUnsetFontUnderLine(TFT_t * dev);
-void lcdBacklightOff(TFT_t * dev);
-void lcdBacklightOn(TFT_t * dev);
-void lcdInversionOff(TFT_t * dev);
-void lcdInversionOn(TFT_t * dev);
+int lcdDrawChar( FontxFile *fx, uint16_t x, uint16_t y, uint8_t ascii, uint16_t color);
+int lcdDrawString( FontxFile *fx, uint16_t x, uint16_t y, uint8_t * ascii, uint16_t color);
+int lcdDrawCode( FontxFile *fx, uint16_t x,uint16_t y,uint8_t code,uint16_t color);
+//int lcdDrawUTF8Char( FontxFile *fx, uint16_t x, uint16_t y, uint8_t *utf8, uint16_t color);
+//int lcdDrawUTF8String( FontxFile *fx, uint16_t x, uint16_t y, unsigned char *utfs, uint16_t color);
+void lcdSetFontDirection( uint16_t);
+void lcdSetFontFill( uint16_t color);
+void lcdUnsetFontFill(void);
+void lcdSetFontUnderLine( uint16_t color);
+void lcdUnsetFontUnderLine(void);
+void lcdBacklightOff(void);
+void lcdBacklightOn(void);
+void lcdInversionOff(void);
+void lcdInversionOn(void);
 #endif
 
 #endif /* MAIN_ST7789_H_ */
