@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{803FD0C6-D64E-4E16-9DC3-1DAEC859A3D2}") = "esp32test3", "esp32test3.vgdbproj", "{6C6937A4-34BC-4C86-8C99-977B146614A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|VisualGDB = Debug|VisualGDB
+		Release|VisualGDB = Release|VisualGDB
+		Tests (Debug)|VisualGDB = Tests (Debug)|VisualGDB
+		Tests (Release)|VisualGDB = Tests (Release)|VisualGDB
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Release|VisualGDB.Build.0 = Release|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Tests (Debug)|VisualGDB.ActiveCfg = Tests (Debug)|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Tests (Debug)|VisualGDB.Build.0 = Tests (Debug)|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Tests (Release)|VisualGDB.ActiveCfg = Tests (Release)|VisualGDB
+		{6C6937A4-34BC-4C86-8C99-977B146614A6}.Tests (Release)|VisualGDB.Build.0 = Tests (Release)|VisualGDB
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
