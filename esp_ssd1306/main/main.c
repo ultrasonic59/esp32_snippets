@@ -24,6 +24,7 @@
  CONFIG_DC_GPIO
  CONFIG_RESET_GPIO
 */
+extern void spp_main(void);
 
 #define tag "SSD1306"
 
@@ -53,9 +54,11 @@ void app_main(void)
 ////    fputc(0x35, stdout);
 
 	lineChar[0]=prev_tst;
-	sprintf(lineChar, "prev_tst2");
+	sprintf(lineChar, "prev_tst3");
 	ssd1306_display_text(&dev, 1, lineChar, strlen(lineChar), false);
-
+	///===============================================
+	spp_main();
+	///===============================================
     for(;;)
     {
     tst_contr=fgetc(stdin);

@@ -67,8 +67,8 @@
       <EnableFastUpToDateCheck>true</EnableFastUpToDateCheck>
       <ESPIDFExtension>
         <IDFCheckout>
-          <Version>v4.3.2</Version>
-          <Subdirectory>esp-idf/v4.3.2</Subdirectory>
+          <Version>release/v4.4</Version>
+          <Subdirectory>esp-idf/v4.4</Subdirectory>
           <Type>ESPIDF</Type>
         </IDFCheckout>
         <COMPort>COM3</COMPort>
@@ -217,7 +217,7 @@
     <DebugMethod>
       <ID>openocd</ID>
       <Configuration xsi:type="com.visualgdb.edp.openocd.settings.esp32">
-        <CommandLine>-f interface/ftdi/esp32_devkitj_v1.cfg -c "adapter_khz 1000" -f target/esp32.cfg</CommandLine>
+        <CommandLine>-f interface/ftdi/esp32_devkitj_v1.cfg -c "adapter_khz 20000" -f target/esp32.cfg</CommandLine>
         <ExtraParameters>
           <Frequency xsi:nil="true" />
           <BoostedFrequency xsi:nil="true" />

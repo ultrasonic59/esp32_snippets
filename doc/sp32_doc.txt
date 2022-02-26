@@ -35,3 +35,13 @@ TCK	GPIO13
 TMS	GPIO14
 
 https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html#component-directories
+https://github.com/amirgon/ESP32-JTAG
+ESP32 PORT  FT232H PORT  COLOR
+==========  ==========   ======
+GPIO13      AD0 (TCK)    Purple
+GPIO12      AD1 (TDI)    Blue
+GPIO15      AD2 (TDO)    Green
+GPIO14      AD3 (TMS)    Yellow
+GND         GND          Black
+
+git@github.com:ultrasonic59/snail_w.git
